@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Meu Repertório Musical</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        /* =========================
+           CABEÇALHO
+        ========================= */
+
+        header {
+            background: linear-gradient(135deg, #151515, #3b1d5a);
+            color: white;
+            padding: 45px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: clamp(28px, 5vw, 48px);
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 17px;
+            opacity: 0.85;
+        }
+
+        /* =========================
+           MENU
+        ========================= */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(20, 20, 20, 0.97);
+            box-shadow: 0 2px 10px rgba(0,0,0,.2);
+        }
+
+        .menu {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
+            padding: 10px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: .2s;
+        }
+
+        .menu a:hover {
+            background: #6c3ca8;
+        }
+
+        /* =========================
+           CONTEÚDO
+        ========================= */
+
+        main {
+            max-width: 1200px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .intro h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .intro p {
+            color: #666;
+        }
+
+        /* =========================
+           CONTROLES
+        ========================= */
+
+        .controles {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .controles input {
+            width: min(500px, 100%);
+            padding: 14px 18px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .controles input:focus {
+            border-color: #713db1;
+            box-shadow: 0 0 0 3px rgba(113,61,177,.12);
+        }
+
+        /* =========================
+           GRID DAS MÚSICAS
+        ========================= */
+
+        .musicas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .musica {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,.08);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .musica:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0,0,0,.14);
+        }
+
+        .musica-cabecalho {
+            background: linear-gradient(135deg, #47216d, #7b45ad);
+            color: white;
+            padding: 20px;
+        }
+
+        .musica-cabecalho h3 {
+            font-size: 22px;
+            margin-bottom: 6px;
+        }
+
+        .artista {
+            opacity: .8;
+            font-size: 14px;
+        }
+
+        .letra {
+            padding: 25px;
+            line-height: 1.8;
+            white-space: pre-line;
+            color: #444;
+            font-size: 16px;
+            min-height: 250px;
+        }
+
+        .botoes {
+            display: flex;
+            gap: 8px;
+            padding: 0 20px 20px;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+            padding: 10px 15px;
+            border-radius: 7px;
+            background: #eee;
+            color: #333;
+            transition: .2s;
+        }
+
+        button:hover {
+            background: #ddd;
+        }
+
+        .btn-principal {
+            background: #713db1;
+            color: white;
+        }
+
+        .btn-principal:hover {
+            background: #5c2e92;
+        }
+
+        /* =========================
+           RODAPÉ
+        ========================= */
+
+        footer {
+            margin-top: 50px;
+            padding: 30px 20px;
+            text-align: center;
+            background: #171717;
+            color: #aaa;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* =========================
+           MODO ESCURO
+        ========================= */
+
+        body.dark {
+            background: #101010;
+            color: #eee;
+        }
+
+        body.dark .intro p {
+            color: #aaa;
+        }
+
+        body.dark .musica {
+            background: #1d1d1d;
+            box-shadow: 0 5px 20px rgba(0,0,0,.3);
+        }
+
+        body.dark .letra {
+            color: #ddd;
+        }
+
+        body.dark .controles input {
+            background: #222;
+            color: white;
+            border-color: #444;
+        }
+
+        body.dark button {
+            background: #333;
+            color: white;
+        }
+
+        body.dark button:hover {
+            background: #444;
+        }
+
+        /* =========================
+           RESPONSIVIDADE
+        ========================= */
+
+        @media (max-width: 800px) {
+            .musicas {
+                grid-template-columns: 1fr;
+            }
+
+            .menu {
+                justify-content: flex-start;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+            }
+
+            .menu a {
+                white-space: nowrap;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            header {
+                padding: 35px 15px;
+            }
+
+            main {
+                padding: 0 12px;
+            }
+
+            .musica-cabecalho {
+                padding: 17px;
+            }
+
+            .letra {
+                padding: 20px;
+                font-size: 15px;
+            }
+
+            .intro h2 {
+                font-size: 25px;
+            }
+        }
+
+        /* impressão */
+        @media print {
+
+            nav,
+            .controles,
+            .botoes,
+            footer {
+                display: none;
+            }
+
+            .musicas {
+                grid-template-columns: 1fr;
+            }
+
+            .musica {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                margin-bottom: 20px;
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <h1>Meu Repertório Musical</h1>
+
+    <p>
+        Letras das músicas do meu repertório
+    </p>
+
+</header>
+
+<nav>
+
+    <div class="menu">
+
+        <a href="#musica1">01</a>
+        <a href="#musica2">02</a>
+        <a href="#musica3">03</a>
+        <a href="#musica4">04</a>
+        <a href="#musica5">05</a>
+        <a href="#musica6">06</a>
+        <a href="#musica7">07</a>
+        <a href="#musica8">08</a>
+
+    </div>
+
+</nav>
+
+<main>
+
+    <section class="intro">
+
+        <h2>Repertório</h2>
+
+        <p>
+            Consulte rapidamente as letras das músicas.
+        </p>
+
+    </section>
+
+
+    <div class="controles">
+
+        <input
+            type="search"
+            id="pesquisa"
+            placeholder="🔎 Pesquisar música ou artista..."
+        >
+
+        <button onclick="alternarTema()">
+            🌙 Tema
+        </button>
+
+    </div>
+
+
+    <section class="musicas">
+
+
+        <!-- =======================
+             MÚSICA 1
+        ======================== -->
+
+        <article class="musica" id="musica1">
+
+            <div class="musica-cabecalho">
+
+                <h3>Nome da Música 1</h3>
+
+                <div class="artista">
+                    Nome do Artista
+                </div>
+
+            </div>
+
+            <div class="letra">
+
+Cole aqui a letra da música 1.
+
+Você pode colocar
+quantas estrofes quiser.
+
+Mantenha as quebras
+de linha normalmente.
+
+            </div>
+
+            <div class="botoes">
+
+                <button
+                    class="btn-principal"
+                    onclick="copiarLetra(this)">
+                    📋 Copiar
+                </button>
+
+                <button onclick="imprimirMusica(this)">
+                    🖨️ Imprimir
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- =======================
+             MÚSICA 2
+        ======================== -->
+
+        <article class="musica" id="musica2">
+
+            <div class="musica-cabecalho">
+
+                <h3>Nome da Música 2</h3>
+
+                <div class="artista">
+                    Nome do Artista
+                </div>
+
+            </div>
+
+            <div class="letra">
+
+Cole aqui a letra da música 2.
+
+            </div>
+
+            <div class="botoes">
+
+                <button
+                    class="btn-principal"
+                    onclick="copiarLetra(this)">
+                    📋 Copiar
+                </button>
+
+                <button onclick="imprimirMusica(this)">
+                    🖨️ Imprimir
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- =======================
+             MÚSICA 3
+        ======================== -->
+
+        <article class="musica" id="musica3">
+
+            <div class="musica-cabecalho">
+
+                <h3>Nome da Música 3</h3>
+
+                <div class="artista">
+                    Nome do Artista
+                </div>
+
+            </div>
+
+            <div class="letra">
+
+Cole aqui a letra da música 3.
+
+            </div>
+
+            <div class="botoes">
+
+                <button
+                    class="btn-principal"
+                    onclick="copiarLetra(this)">
+                    📋 Copiar
+                </button>
+
+                <button onclick="imprimirMusica(this)">
+                    🖨️ Imprimir
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- =======================
+             MÚSICA 4
+        ======================== -->
+
+        <article class="musica" id="musica4">
+
+            <div class="musica-cabecalho">
+
+                <h3>Nome da Música 4</h3>
+
+                <div class="artista">
+                    Nome do Artista
+                </div>
+
+            </div>
+
+            <div class="letra">
+
+Cole aqui a letra da música 4.
+
+            </div>
+
+            <div class="botoes">
+
+                <button
+                    class="btn-principal"
+                    onclick="copiarLetra(this)">
+                    📋 Copiar
+                </button>
+
+                <button onclick="imprimirMusica(this)">
+                    🖨️ Imprimir
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- =======================
+             MÚSICA 5
+        ======================== -->
+
+        <article class="musica" id="musica5">
+
+            <div class="musica-cabecalho">
+
+                <h3>Nome da Música 5</h3>
+
+                <div class="artista">
+                    Nome do Artista
+                </div>
+
+            </div>
+
+            <div class="letra">
+
+Cole aqui a letra da música 5.
+
+            </div>
+
+            <div class="botoes">
+
+                <button
+                    class="btn-principal"
+                    onclick="copiarLetra(this)">
+                    📋 Copiar
+                </button>
+
+                <button onclick="imprimirMusica(this)">
+                    🖨️ Imprimir
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- =======================
+             MÚSICA 6
+        ======================== -->
+
+        <article class="musica" id="musica6">
+
+            <div class="musica-cabecalho">
+
+                <h3>Nome da Música 6</h3>
+
+                <div class="artista">
+                    Nome do Artista
+                </div>
+
+            </div>
+
+            <div class="letra">
+
+Cole aqui a letra da música 6.
+
+            </div>
+
+            <div class="botoes">
+
+                <button
+                    class="btn-principal"
+                    onclick="copiarLetra(this)">
+                    📋 Copiar
+                </button>
+
+                <button onclick="imprimirMusica(this)">
+                    🖨️ Imprimir
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- =======================
+             MÚSICA 7
+        ======================== -->
+
+        <article class="musica" id="musica7">
+
+            <div class="musica-cabecalho">
+
+                <h3>Nome da Música 7</h3>
+
+                <div class="artista">
+                    Nome do Artista
+                </div>
+
+            </div>
+
+            <div class="letra">
+
+Cole aqui a letra da música 7.
+
+            </div>
+
+            <div class="botoes">
+
+                <button
+                    class="btn-principal"
+                    onclick="copiarLetra(this)">
+                    📋 Copiar
+                </button>
+
+                <button onclick="imprimirMusica(this)">
+                    🖨️ Imprimir
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- =======================
+             MÚSICA 8
+        ======================== -->
+
+        <article class="musica" id="musica8">
+
+            <div class="musica-cabecalho">
+
+                <h3>Nome da Música 8</h3>
+
+                <div class="artista">
+                    Nome do Artista
+                </div>
+
+            </div>
+
+            <div class="letra">
+
+Cole aqui a letra da música 8.
+
+            </div>
+
+            <div class="botoes">
+
+                <button
+                    class="btn-principal"
+                    onclick="copiarLetra(this)">
+                    📋 Copiar
+                </button>
+
+                <button onclick="imprimirMusica(this)">
+                    🖨️ Imprimir
+                </button>
+
+            </div>
+
+        </article>
+
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        <strong>Meu Repertório Musical</strong>
+    </p>
+
+    <p>
+        © 2026 - Todos os direitos reservados
+    </p>
+
+</footer>
+
+
+<script>
+
+    /* =========================
+       PESQUISA
+    ========================= */
+
+    const pesquisa = document.getElementById("pesquisa");
+
+    pesquisa.addEventListener("input", function () {
+
+        const termo = this.value.toLowerCase();
+
+        document.querySelectorAll(".musica").forEach(function (musica) {
+
+            const texto = musica.innerText.toLowerCase();
+
+            if (texto.includes(termo)) {
+                musica.style.display = "";
+            } else {
+                musica.style.display = "none";
+            }
+
+        });
+
+    });
+
+
+    /* =========================
+       TEMA ESCURO
+    ========================= */
+
+    function alternarTema() {
+
+        document.body.classList.toggle("dark");
+
+        if (document.body.classList.contains("dark")) {
+
+            localStorage.setItem("tema", "dark");
+
+        } else {
+
+            localStorage.setItem("tema", "light");
+
+        }
+
+    }
+
+
+    /* Recupera o tema */
+
+    if (localStorage.getItem("tema") === "dark") {
+
+        document.body.classList.add("dark");
+
+    }
+
+
+    /* =========================
+       COPIAR LETRA
+    ========================= */
+
+    function copiarLetra(botao) {
+
+        const musica = botao.closest(".musica");
+
+        const titulo = musica.querySelector("h3").innerText;
+
+        const artista = musica.querySelector(".artista").innerText;
+
+        const letra = musica.querySelector(".letra").innerText;
+
+        const texto =
+            titulo +
+            "\n" +
+            artista +
+            "\n\n" +
+            letra;
+
+        navigator.clipboard.writeText(texto).then(function () {
+
+            const textoOriginal = botao.innerText;
+
+            botao.innerText = "✓ Copiado!";
+
+            setTimeout(function () {
+
+                botao.innerText = textoOriginal;
+
+            }, 1500);
+
+        });
+
+    }
+
+
+    /* =========================
+       IMPRIMIR MÚSICA
+    ========================= */
+
+    function imprimirMusica(botao) {
+
+        const musica = botao.closest(".musica");
+
+        const janela = window.open("", "_blank");
+
+        janela.document.write(`
+
+            <!DOCTYPE html>
+
+            <html lang="pt-BR">
+
+            <head>
+
+                <meta charset="UTF-8">
+
+                <title>${musica.querySelector("h3").innerText}</title>
+
+                <style>
+
+                    body {
+                        font-family: Arial;
+                        max-width: 800px;
+                        margin: 40px auto;
+                        padding: 20px;
+                        line-height: 1.8;
+                    }
+
+                    h1 {
+                        margin-bottom: 5px;
+                    }
+
+                    .artista {
+                        color: #666;
+                        margin-bottom: 30px;
+                    }
+
+                    .letra {
+                        white-space: pre-line;
+                    }
+
+                </style>
+
+            </head>
+
+            <body>
+
+                <h1>
+                    ${musica.querySelector("h3").innerText}
+                </h1>
+
+                <div class="artista">
+                    ${musica.querySelector(".artista").innerText}
+                </div>
+
+                <div class="letra">
+                    ${musica.querySelector(".letra").innerText}
+                </div>
+
+            </body>
+
+            </html>
+
+        `);
+
+        janela.document.close();
+
+        janela.focus();
+
+        setTimeout(function () {
+
+            janela.print();
+
+        }, 300);
+
+    }
+
+</script>
+
+</body>
+</html>
