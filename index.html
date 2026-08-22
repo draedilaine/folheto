@@ -42,6 +42,30 @@
         header p {
             font-size: 17px;
             opacity: 0.85;
+            margin-bottom: 20px;
+        }
+
+        /* Botões de fonte no cabeçalho */
+        .controles-fonte {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .controles-fonte button {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: .2s;
+        }
+
+        .controles-fonte button:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
 
         /* =========================
@@ -334,8 +358,14 @@
     <h1>Folheto Digital</h1>
 
     <p>
-        Letras das músicas do meu repertório
+        Letras das músicas do meu repertório[cite: 1]
     </p>
+
+    <!-- Novos botões de controle de fonte no cabeçalho -->
+    <div class="controles-fonte">
+        <button onclick="mudarFonte('diminuir')">A- Diminuir Fonte</button>
+        <button onclick="mudarFonte('aumentar')">A+ Aumentar Fonte</button>
+    </div>
 
 </header>
 
@@ -348,10 +378,7 @@
         <a href="#musica3">03</a>
         <a href="#musica4">04</a>
         <a href="#musica5">05</a>
-        <a href="#musica6">06</a>
-        <a href="#musica7">07</a>
-        <a href="#musica8">08</a>
-
+        
     </div>
 
 </nav>
@@ -360,10 +387,10 @@
 
     <section class="intro">
 
-        <h2>Repertório</h2>
+        <h2>Repertório[cite: 1]</h2>
 
         <p>
-            Consulte rapidamente as letras das músicas.
+            Consulte rapidamente as letras das músicas.[cite: 1]
         </p>
 
     </section>
@@ -531,23 +558,33 @@ Proclamação do Evangelho de Jesus Cristo segundo João.
 
             <div class="musica-cabecalho">
 
-                <h3>Nome da Música 1</h3>
+                <h3>Tu És a Razão da Jornada
+                </h3>
 
                 <div class="artista">
-                    Nome do Artista
+                    Entrada
                 </div>
 
             </div>
 
             <div class="letra">
 
-Cole aqui a letra da música 1.
+                Um dia escutei Teu chamado
+                Divino recado batendo no coração
+                Deixei deste mundo as promessas
+                E fui bem depressa no rumo da Tua mãoTu és a razão da jornada
+                
+                Tu és minha estrada, meu guia, meu fim
+                No grito que vem do Teu povo
+                Te escuto de novo, chamando por mimTu és a razão da jornada
+                
+                Os anos passaram ligeiro
+                Me fiz um obreiro do reino de paz e amor
+                Nos mares do mundo navego
+                E às redes me entrego
+                Tornei-me Teu pescador
 
-Você pode colocar
-quantas estrofes quiser.
-
-Mantenha as quebras
-de linha normalmente.
+                
 
             </div>
 
@@ -576,17 +613,29 @@ de linha normalmente.
 
             <div class="musica-cabecalho">
 
-                <h3>Nome da Música 2</h3>
+                <h3>Aleluia</h3>
 
                 <div class="artista">
-                    Nome do Artista
+                    Aclamação
                 </div>
 
             </div>
 
             <div class="letra">
 
-Cole aqui a letra da música 2.
+                Aleluia, aleluia, aleluia
+                Aleluia, aleluia, aleluia
+                
+                Quando estamos unidos
+                Estás entre nós
+                E nos falarás da tua vida
+                
+                Aleluia, aleluia, aleluia
+                Aleluia, aleluia, aleluia
+                
+                Este nosso mundo
+                Sentido terá
+                Se tua palavra renovar
 
             </div>
 
@@ -615,17 +664,28 @@ Cole aqui a letra da música 2.
 
             <div class="musica-cabecalho">
 
-                <h3>Nome da Música 3</h3>
+                <h3>Muitos Grãos de Trigo</h3>
 
                 <div class="artista">
-                    Nome do Artista
+                   Ofertório
                 </div>
 
             </div>
 
             <div class="letra">
 
-Cole aqui a letra da música 3.
+                Muitos grãos de trigo, se tornaram pão
+                Hoje são Teu corpo, ceia e comunhão
+                Muitos grãos de trigo, se tornaram pão
+                
+                Toma, Senhor, nossa vida em ação
+                Para mudá-la em fruto e missão
+                Toma, Senhor, nossa vida em ação
+                Para mudá-la em missão
+                
+                Muitos cachos de uva, se tornaram vinho
+                Hoje são teu sangue, força no caminho
+                Muitos cachos de uva, se tornaram vinho
 
             </div>
 
@@ -654,17 +714,42 @@ Cole aqui a letra da música 3.
 
             <div class="musica-cabecalho">
 
-                <h3>Nome da Música 4</h3>
+                <h3>Vejam, Eu Andei Pelas Vilas</h3>
 
                 <div class="artista">
-                    Nome do Artista
+                    Comunhão
                 </div>
 
             </div>
 
             <div class="letra">
 
-Cole aqui a letra da música 4.
+                Vejam: Eu andei pelas vilas, apontei as saídas como o Pai me pediu
+                Portas eu cheguei para abri-las, eu curei as feridas como nunca se viu.
+                
+                Por onde formos também nós que brilhe a tua luz
+                Fala, Senhor, na nossa voz, em nossa vida
+                Nosso caminho então conduz, queremos ser assim
+                Que o pão da vida nos revigore em nosso "sim"
+                
+                
+                Vejam: Fiz de novo a leitura das raízes da vida que meu Pai vê melhor
+                Luzes acendi com brandura, para a ovelha perdida não medi meu suor
+                
+                
+                Vejam: Procurei bem aqueles que ninguém procurava e falei de meu Pai
+                Pobres, a esperança que é deles eu não quis ver escrava de um poder que retrai
+                
+                
+                Vejam: Semeei consciência nos caminhos do povo, pois o Pai quer assim
+                Tramas, enfrentei prepotência dos que temem o novo, qual perigo sem fim
+
+                Vejam: Eu quebrei as algemas, levantei os caídos, do meu Pai fui as mãos
+                Laços, recusei os esquemas, Eu não quero oprimidos, quero um povo de irmãos
+
+
+                Vejam: Procurei ser bem claro; o meu reino é diverso, não precisa de Rei
+                Tronos, outro jeito mais raro de juntar os dispersos o meu Pai tem por lei
 
             </div>
 
@@ -693,17 +778,65 @@ Cole aqui a letra da música 4.
 
             <div class="musica-cabecalho">
 
-                <h3>Nome da Música 5</h3>
+                <h3>Viva a Mãe de Deus e Nossa</h3>
 
                 <div class="artista">
-                    Nome do Artista
+                    Canto Final
                 </div>
 
             </div>
 
             <div class="letra">
 
-Cole aqui a letra da música 5.
+                Viva a mãe de Deus e nossa
+                Sem pecado concebida
+                Viva a Virgem Imaculada
+                A Senhora Aparecida
+                
+                Aqui estão vossos devotos
+                Cheios de fé incendida
+                De conforto e de esperança
+                Ó Senhora Aparecida
+                
+                Viva a mãe de Deus e nossa
+                Sem pecado concebida
+                Viva a Virgem Imaculada
+                A Senhora Aparecida
+                
+                Virgem santa, virgem bela
+                Mãe amável, mãe querida
+                Amparai-nos, socorrei-nos
+                Ó Senhora Aparecida
+                
+                Viva a mãe de Deus e nossa
+                Sem pecado concebida
+                Viva a Virgem Imaculada
+                A Senhora Aparecida
+                
+                Protegei a santa igreja
+                Ó mãe terna e compadecida
+                Protegei a nossa pátria
+                Ó Senhora Aparecida
+                
+                Viva a mãe de Deus e nossa
+                Sem pecado concebida
+                Viva a Virgem Imaculada
+                A Senhora Aparecida
+                
+                Amparai a todo o clero
+                Em sua terrena lida
+                Para o bem dos pecadores
+                Ó Senhora Aparecida
+                
+                Viva a mãe de Deus e nossa
+                Sem pecado concebida
+                Viva a Virgem Imaculada
+                A Senhora Aparecida
+                
+                Velai por nossas famílias
+                Pela infância desvalida
+                Pelo povo brasileiro
+                Ó Senhora Aparecida
 
             </div>
 
@@ -724,122 +857,7 @@ Cole aqui a letra da música 5.
         </article>
 
 
-        <!-- =======================
-             MÚSICA 6
-        ======================== -->
-
-        <article class="musica" id="musica6">
-
-            <div class="musica-cabecalho">
-
-                <h3>Nome da Música 6</h3>
-
-                <div class="artista">
-                    Nome do Artista
-                </div>
-
-            </div>
-
-            <div class="letra">
-
-Cole aqui a letra da música 6.
-
-            </div>
-
-            <div class="botoes">
-
-                <button
-                    class="btn-principal"
-                    onclick="copiarLetra(this)">
-                    📋 Copiar
-                </button>
-
-                <button onclick="imprimirMusica(this)">
-                    🖨️ Imprimir
-                </button>
-
-            </div>
-
-        </article>
-
-
-        <!-- =======================
-             MÚSICA 7
-        ======================== -->
-
-        <article class="musica" id="musica7">
-
-            <div class="musica-cabecalho">
-
-                <h3>Nome da Música 7</h3>
-
-                <div class="artista">
-                    Nome do Artista
-                </div>
-
-            </div>
-
-            <div class="letra">
-
-Cole aqui a letra da música 7.
-
-            </div>
-
-            <div class="botoes">
-
-                <button
-                    class="btn-principal"
-                    onclick="copiarLetra(this)">
-                    📋 Copiar
-                </button>
-
-                <button onclick="imprimirMusica(this)">
-                    🖨️ Imprimir
-                </button>
-
-            </div>
-
-        </article>
-
-
-        <!-- =======================
-             MÚSICA 8
-        ======================== -->
-
-        <article class="musica" id="musica8">
-
-            <div class="musica-cabecalho">
-
-                <h3>Nome da Música 8</h3>
-
-                <div class="artista">
-                    Nome do Artista
-                </div>
-
-            </div>
-
-            <div class="letra">
-
-Cole aqui a letra da música 8.
-
-            </div>
-
-            <div class="botoes">
-
-                <button
-                    class="btn-principal"
-                    onclick="copiarLetra(this)">
-                    📋 Copiar
-                </button>
-
-                <button onclick="imprimirMusica(this)">
-                    🖨️ Imprimir
-                </button>
-
-            </div>
-
-        </article>
-
+        
 
     </section>
 
@@ -860,6 +878,26 @@ Cole aqui a letra da música 8.
 
 
 <script>
+
+    /* =========================
+       TAMANHO DA FONTE (MÚSICAS)
+    ========================= */
+
+    let tamanhoAtual = 16; // Tamanho base inicial em pixels para a classe .letra
+
+    function mudarFonte(acao) {
+        if (acao === 'aumentar' && tamanhoAtual < 28) {
+            tamanhoAtual += 2;
+        } else if (acao === 'diminuir' && tamanhoAtual > 12) {
+            tamanhoAtual -= 2;
+        }
+
+        const letras = document.querySelectorAll(".musicas .letra");
+        letras.forEach(function(el) {
+            el.style.fontSize = tamanhoAtual + "px";
+        });
+    }
+
 
     /* =========================
        PESQUISA
